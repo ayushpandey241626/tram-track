@@ -16,6 +16,11 @@ export interface Departure {
   state?: string;
 }
 
+export interface Deviation {
+  message: string;
+  importance_level: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -42,6 +47,17 @@ export class DepartureService {
             expected.setMinutes(expected.getMinutes() + minutes);
             return { ...dep, expected };
           })
+      )
+    );
+  }
+
+  getDeviations(): Observable<Deviation[]> {
+    return this.http.get<any>(this.dataUrl).pipe(
+      map((response) =>
+        response.stop_deviations.map((dev: any) => ({
+          message: dev.message,
+          importance_level: dev.importance_level,
+        }))
       )
     );
   }

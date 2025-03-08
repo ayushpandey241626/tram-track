@@ -1,0 +1,7 @@
+<div class="alerts-container" *ngIf="deviations.length > 0">
+    <h2>⚠️ Service Alerts</h2>
+    <div *ngFor="let deviation of deviations" class="alert-item">
+      <div class="importance-level" [style.backgroundColor]="getAlertColor(deviation.importance_level)"></div>
+      <div class="message">{{ deviation.message }}</div>
+    </div>
+  </div>
