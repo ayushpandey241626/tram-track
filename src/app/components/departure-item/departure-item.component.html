@@ -1,6 +1,8 @@
 <div class="departure-item">
-    <div class="line">Line {{ departure.line.designation }}</div>
-    <div class="destination">To {{ departure.destination }}</div>
-    <div class="time">{{ departure.display }}</div>
-    <div class="expected">Departure at {{ departure.expected | date:'HH:mm' }}</div>
+  <div class="line">Line {{ departure.line.designation }}</div>
+  <div class="destination">To {{ departure.destination }}</div>
+  <div class="time" [class.departed]="remainingTime === 'Departed'">
+    {{ remainingTime }}
   </div>
+  <div class="expected">Scheduled at {{ departure.expected | date:'HH:mm' }}</div>
+</div>

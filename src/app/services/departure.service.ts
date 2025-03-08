@@ -27,10 +27,21 @@ export class DepartureService {
   getTramsToLinde(): Observable<Departure[]> {
     return this.http.get<any>(this.dataUrl).pipe(
       map((response) =>
-        response.departures.filter(
-          (dep: any) =>
-            dep.line.transport_mode === 'TRAM' && dep.direction_code === 1 // Filter TRAMs heading towards Linde
-        )
+        response.departures
+          .filter(
+            (dep: any) =>
+              dep.line.transport_mode === 'TRAM' && dep.direction_code === 1
+          )
+          .map((dep: any) => {
+            // Calculate expected time dynamically
+            const minutes =
+              dep.display === 'Nu'
+                ? 1
+                : parseInt(dep.display.match(/\d+/)?.[0] || 0);
+            const expected = new Date();
+            expected.setMinutes(expected.getMinutes() + minutes);
+            return { ...dep, expected };
+          })
       )
     );
   }

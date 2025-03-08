@@ -26,3 +26,9 @@
       font-size: 0.9rem;
     }
   }
+
+  .time {
+    &.departed {
+      color: #e74c3c !important;
+    }
+  }
