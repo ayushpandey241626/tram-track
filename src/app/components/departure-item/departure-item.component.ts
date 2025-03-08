@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Departure } from '../../services/departure.service';
 
 @Component({
   selector: 'app-departure-item',
   templateUrl: './departure-item.component.html',
-  styleUrl: './departure-item.component.scss'
+  styleUrls: ['./departure-item.component.scss'],
 })
 export class DepartureItemComponent {
-
+  @Input() departure!: Departure;
 }

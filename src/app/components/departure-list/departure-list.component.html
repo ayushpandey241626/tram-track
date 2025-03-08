@@ -1,1 +1,11 @@
-<p>departure-list works!</p>
+<div class="departure-list">
+    <h1>🚋 Trams from Luma to Linde</h1>
+    <button class="refresh-btn" (click)="refresh()">🔄 Refresh</button>
+    <div *ngIf="departures.length === 0" class="no-departures">
+      No departures found.
+    </div>
+    <app-departure-item 
+      *ngFor="let departure of departures"
+      [departure]="departure">
+    </app-departure-item>
+  </div>
